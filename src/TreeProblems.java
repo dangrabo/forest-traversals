@@ -28,6 +28,14 @@ public class TreeProblems {
    If the root is null, do nothing.
    */
   public static <T> void postOrder(Node<T> root) {
+    if (root == null) return;
+
+    if (root.children != null) {
+      for (Node<T> child : root.children) {
+        postOrder(child);
+      }
+    }
+    System.out.println(root.value);
   }
 
   /*
@@ -55,6 +63,16 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if (tree == null) return;
+    if (root == null || !tree.containsKey(root)) return;
+
+    List<T> children = tree.get(root);
+      if (children != null) {
+        for (T child : children) {
+        postOrder(tree, child);
+      }
+    }
+    System.out.println(root);
   }
 
   /*
